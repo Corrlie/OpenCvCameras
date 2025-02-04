@@ -1,8 +1,9 @@
 #include "CameraController.h"
 #include <opencv2/opencv.hpp>
 
-CameraController::CameraController()
-    : running(true)
+CameraController::CameraController( std::unique_ptr<CameraFrameCapture> cameraFrameCapture )
+    : running(true),
+    cameraFrameCapture(std::move(cameraFrameCapture))
 {
 }
 
@@ -26,25 +27,23 @@ CameraController::~CameraController()
 
 void CameraController::cameraLoop()
 {
-    cv::VideoCapture cap(0);
-    if (!cap.isOpened()) {
+    if (!cameraFrameCapture->open()) {
         std::cerr << "Error: Cannot open the camera!" << std::endl;
         return;
     }
 
     cv::Mat frame;
     while (running) {
-        cap >> frame;
-        if (frame.empty()) break;
-
+        if (!cameraFrameCapture->captureFrame(frame) ||
+            frame.empty()) break;
         cv::imshow("Camera Preview", frame);
-
-        if (cv::waitKey(30) == 27) {
-            running = false;
+        if (cv::waitKey(30) == 27) 
+        { 
+            running = false; 
         }
     }
 
-    cap.release();
+    cameraFrameCapture->close();
     cv::destroyAllWindows();
 }
 

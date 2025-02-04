@@ -1,8 +1,10 @@
 #include <iostream>
 #include "CameraController.h"
+#include "WebcamCameraFrameCapture.h"
 
 int main() {
-    CameraController cameraController;
+ 
+    CameraController cameraController(std::make_unique<WebcamCameraFrameCapture>());
     cameraController.start();
 
     std::cout << "Press Enter to exit the program..." << std::endl;
