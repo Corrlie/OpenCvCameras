@@ -134,12 +134,14 @@
   <ItemGroup>
     <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="CameraFrameCapture.cpp" />
+    <ClCompile Include="MotionDetector.cpp" />
     <ClCompile Include="OpenCvCameras.cpp" />
     <ClCompile Include="WebcamCameraFrameCapture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CameraController.h" />
     <ClInclude Include="CameraFrameCapture.h" />
+    <ClInclude Include="MotionDetector.h" />
     <ClInclude Include="WebcamCameraFrameCapture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

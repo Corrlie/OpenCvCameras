@@ -27,6 +27,9 @@
     <ClCompile Include="WebcamCameraFrameCapture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="MotionDetector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CameraController.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WebcamCameraFrameCapture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MotionDetector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
