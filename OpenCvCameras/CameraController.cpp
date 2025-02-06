@@ -1,4 +1,5 @@
 #include "CameraController.h"
+#include "MotionContourDrawer.h"
 #include <opencv2/opencv.hpp>
 
 CameraController::CameraController( std::unique_ptr<CameraFrameCapture> cameraFrameCapture,
@@ -43,7 +44,7 @@ void CameraController::cameraLoop()
         {
             if(motionDetector->detectMotion(frame, motionMask))
             {
-                HandleContoursForMovingArea(motionMask, frame);
+                MotionContourDrawer::handleContoursForMovingArea(motionMask, frame);
             }
         }
         else 
@@ -61,24 +62,6 @@ void CameraController::cameraLoop()
 
     cameraFrameCapture->close();
     cv::destroyAllWindows();
-}
-
-void CameraController::HandleContoursForMovingArea(cv::Mat& motionMask, cv::Mat& frame)
-{
-    std::vector<std::vector<cv::Point>> contours;
-    cv::findContours(motionMask, contours, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
-
-    drawBoundingBoxForMovingArea(contours, frame);
-}
-
-void CameraController::drawBoundingBoxForMovingArea(std::vector<std::vector<cv::Point>>& contours, cv::Mat& frame)
-{
-    for (const auto& contour : contours) {
-        if (cv::contourArea(contour) > 500) {
-            cv::Rect boundingBox = cv::boundingRect(contour);
-            cv::rectangle(frame, boundingBox, cv::Scalar(0, 255, 0), 2);
-        }
-    }
 }
 
 

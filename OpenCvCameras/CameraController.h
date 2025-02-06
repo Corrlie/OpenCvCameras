@@ -19,6 +19,4 @@ private:
     std::shared_ptr<MotionDetector> motionDetector;
 
     void cameraLoop();
-    void HandleContoursForMovingArea(cv::Mat& motionMask, cv::Mat& frame);
-    void drawBoundingBoxForMovingArea(std::vector<std::vector<cv::Point>>& contours, cv::Mat& frame);
 };
