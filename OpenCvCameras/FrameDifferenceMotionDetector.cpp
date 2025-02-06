@@ -1,6 +1,11 @@
 #include "FrameDifferenceMotionDetector.h"
 #include "macros.h"
 
+FrameDifferenceMotionDetector::FrameDifferenceMotionDetector(std::shared_ptr<Logger> logger):
+	logger(std::move(logger))
+{
+}
+
 bool FrameDifferenceMotionDetector::detectMotion(const cv::Mat& newFrame, cv::Mat& motionMask)
 {
 	cv::Mat gray;
@@ -26,5 +31,10 @@ bool FrameDifferenceMotionDetector::detectMotion(const cv::Mat& newFrame, cv::Ma
 
 	prevFrame = gray.clone();
 
-	return cv::countNonZero(motionMask) > MOTION_DETECTION_THRESHOLD;
+	bool moveDetected{ cv::countNonZero(motionMask) > MOTION_DETECTION_THRESHOLD };
+
+	if (moveDetected) {
+		logger->log();
+	}
+	return moveDetected;
 }
