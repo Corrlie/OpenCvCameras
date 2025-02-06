@@ -143,6 +143,7 @@
     <ClInclude Include="CameraController.h" />
     <ClInclude Include="CameraFrameCapture.h" />
     <ClInclude Include="FrameDifferenceMotionDetector.h" />
+    <ClInclude Include="macros.h" />
     <ClInclude Include="MotionDetector.h" />
     <ClInclude Include="WebcamCameraFrameCapture.h" />
   </ItemGroup>

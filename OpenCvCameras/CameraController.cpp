@@ -53,7 +53,6 @@ void CameraController::cameraLoop()
 
         cv::imshow("Camera Preview", frame);
         if(!motionMask.empty()) cv::imshow("Motion Mask", motionMask);
-        //cv::imshow("Motion Mask", motionMask);
         if (cv::waitKey(30) == 27) 
         { 
             running = false; 

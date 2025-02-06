@@ -1,11 +1,14 @@
 #include "FrameDifferenceMotionDetector.h"
+#include "macros.h"
 
 bool FrameDifferenceMotionDetector::detectMotion(const cv::Mat& newFrame, cv::Mat& motionMask)
 {
 	cv::Mat gray;
 	cv::Mat diff;
 	cv::cvtColor(newFrame, gray, cv::COLOR_BGR2GRAY);
-	cv::GaussianBlur(gray, gray, cv::Size(15, 15), 2);
+	cv::GaussianBlur(gray, gray, 
+		cv::Size(GAUSSIAN_BLUR_KERNEL_SIZE, GAUSSIAN_BLUR_KERNEL_SIZE),
+		2);
 
 	if (prevFrame.empty()) {
 		prevFrame = gray.clone();
@@ -13,8 +16,13 @@ bool FrameDifferenceMotionDetector::detectMotion(const cv::Mat& newFrame, cv::Ma
 	}
 
 	cv::absdiff(prevFrame, gray, diff);
-	cv::threshold(diff, motionMask, 20, 255, cv::THRESH_BINARY);
-	cv::dilate(motionMask, motionMask, cv::Mat::ones(17, 17, CV_8U), cv::Point(-1, -1), 3);
+	cv::threshold(diff, motionMask, 
+		BINARY_THRESHOLD_VALUE, BINARY_THRESHOLD_MAX, cv::THRESH_BINARY);
+
+	cv::dilate(motionMask, motionMask, 
+		cv::Mat::ones(DILATE_KERNEL_SIZE,
+			DILATE_KERNEL_SIZE, CV_8U),
+			cv::Point(DILATE_ANCHOR, DILATE_ANCHOR), DILATE_ITERATIONS);
 
 	prevFrame = gray.clone();
 
