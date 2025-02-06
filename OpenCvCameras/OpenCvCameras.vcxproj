@@ -134,7 +134,9 @@
   <ItemGroup>
     <ClCompile Include="CameraController.cpp" />
     <ClCompile Include="CameraFrameCapture.cpp" />
+    <ClCompile Include="FileLogger.cpp" />
     <ClCompile Include="FrameDifferenceMotionDetector.cpp" />
+    <ClCompile Include="Logger.cpp" />
     <ClCompile Include="MotionContourDrawer.cpp" />
     <ClCompile Include="MotionDetector.cpp" />
     <ClCompile Include="OpenCvCameras.cpp" />
@@ -143,7 +145,9 @@
   <ItemGroup>
     <ClInclude Include="CameraController.h" />
     <ClInclude Include="CameraFrameCapture.h" />
+    <ClInclude Include="FileLogger.h" />
     <ClInclude Include="FrameDifferenceMotionDetector.h" />
+    <ClInclude Include="Logger.h" />
     <ClInclude Include="macros.h" />
     <ClInclude Include="MotionContourDrawer.h" />
     <ClInclude Include="MotionDetector.h" />
