@@ -4,19 +4,19 @@
 #include "WebcamCameraFrameCapture.h"
 #include "FrameDifferenceMotionDetector.h"
 #include "FileLogger.h"
-
+#include "ConsoleDisplay.h"
 
 int main() {
     cv::utils::logging::setLogLevel(cv::utils::logging::LOG_LEVEL_SILENT);
-    std::shared_ptr<Logger> fileLogger = std::make_shared<FileLogger>("fileLogs.txt");
 
+    ConsoleDisplay display;
+
+    std::shared_ptr<Logger> fileLogger = std::make_shared<FileLogger>("fileLogs.txt");
     CameraController cameraController(std::make_unique<WebcamCameraFrameCapture>(), 
         std::make_shared<FrameDifferenceMotionDetector>(fileLogger));
 
     cameraController.start();
-
-    std::cout << "Press Enter to exit the program..." << std::endl;
-    std::cin.get();
+    display.handleConsole();
     cameraController.stop();
 
     std::cout << "Program terminated successfully." << std::endl;
