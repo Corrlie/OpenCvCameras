@@ -3,6 +3,7 @@
 #include <sstream>
 #include <iostream>
 #include <thread>
+#include <conio.h>
 void ConsoleDisplay::handleConsole()
 {
     std::cout << "Press ENTER to exit the program...\n";
@@ -14,10 +15,11 @@ void ConsoleDisplay::handleConsole()
         localtime_s(&timeInfo, &now_c);
         std::cout << "\rCurrent time: " << formatTime(timeInfo) << std::flush;
 
-        if (std::cin.rdbuf()->in_avail() > 0) {
-            std::cin.get();
-            break;
+        if (_kbhit()) {
+            char c = _getch();
+            if (c == '\r') break;
         }
+
         std::this_thread::sleep_for(std::chrono::seconds(1));
 
     }

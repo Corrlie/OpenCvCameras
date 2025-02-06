@@ -19,6 +19,6 @@ int main() {
     display.handleConsole();
     cameraController.stop();
 
-    std::cout << "Program terminated successfully." << std::endl;
+    std::cout << "\nProgram terminated successfully." << std::endl;
     return 0;
 }
