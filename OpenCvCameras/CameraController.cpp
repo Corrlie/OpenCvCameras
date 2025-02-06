@@ -1,9 +1,11 @@
 #include "CameraController.h"
 #include <opencv2/opencv.hpp>
 
-CameraController::CameraController( std::unique_ptr<CameraFrameCapture> cameraFrameCapture )
+CameraController::CameraController( std::unique_ptr<CameraFrameCapture> cameraFrameCapture,
+    std::shared_ptr<MotionDetector> motionDetector )
     : running(true),
-    cameraFrameCapture(std::move(cameraFrameCapture))
+    cameraFrameCapture(std::move(cameraFrameCapture) ),
+    motionDetector(std::move(motionDetector) ) 
 {
 }
 
@@ -39,7 +41,7 @@ void CameraController::cameraLoop()
         if (cameraFrameCapture->captureFrame(frame) &&
             !frame.empty()) 
         {
-            if(motionDetector.detectMotion(frame, motionMask))
+            if(motionDetector->detectMotion(frame, motionMask))
             {
                 HandleContoursForMovingArea(motionMask, frame);
             }

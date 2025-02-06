@@ -5,9 +5,9 @@ class MotionDetector
 {
 public:
 	MotionDetector() = default;
-	bool detectMotion(const cv::Mat& newFrame, cv::Mat& motionMask);
+	virtual bool detectMotion(const cv::Mat& newFrame, cv::Mat& motionMask) = 0;
+	virtual ~MotionDetector() = default;
 
-private:
-	cv::Mat prevFrame;
+
 };
 
