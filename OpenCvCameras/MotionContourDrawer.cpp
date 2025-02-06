@@ -1,11 +1,16 @@
 #include "MotionContourDrawer.h"
+#include "macros.h"
 
 void MotionContourDrawer::drawBoundingBoxForMovingArea(std::vector<std::vector<cv::Point>>& contours, cv::Mat& frame)
 {
     for (const auto& contour : contours) {
-        if (cv::contourArea(contour) > 500) {
+        if (cv::contourArea(contour) > MIN_CONTOUR_AREA) {
             cv::Rect boundingBox = cv::boundingRect(contour);
-            cv::rectangle(frame, boundingBox, cv::Scalar(0, 255, 0), 2);
+            cv::rectangle(frame, boundingBox, 
+                cv::Scalar(COLOR_CHANNEL_MIN,
+                    COLOR_CHANNEL_MAX, 
+                    COLOR_CHANNEL_MIN),
+                CONTOUR_THICKNESS);
         }
     }
 }

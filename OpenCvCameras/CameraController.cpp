@@ -1,6 +1,7 @@
 #include "CameraController.h"
 #include "MotionContourDrawer.h"
 #include <opencv2/opencv.hpp>
+#include "macros.h"
 
 CameraController::CameraController( std::unique_ptr<CameraFrameCapture> cameraFrameCapture,
     std::shared_ptr<MotionDetector> motionDetector )
@@ -54,7 +55,7 @@ void CameraController::cameraLoop()
 
         cv::imshow("Camera Preview", frame);
         if(!motionMask.empty()) cv::imshow("Motion Mask", motionMask);
-        if (cv::waitKey(30) == 27) 
+        if (cv::waitKey(30) == CLOSE_PREVIEW_KEY)
         { 
             running = false; 
         }

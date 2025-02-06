@@ -8,7 +8,7 @@ bool FrameDifferenceMotionDetector::detectMotion(const cv::Mat& newFrame, cv::Ma
 	cv::cvtColor(newFrame, gray, cv::COLOR_BGR2GRAY);
 	cv::GaussianBlur(gray, gray, 
 		cv::Size(GAUSSIAN_BLUR_KERNEL_SIZE, GAUSSIAN_BLUR_KERNEL_SIZE),
-		2);
+		GAUSSIAN_BLUR_SIGMA_X);
 
 	if (prevFrame.empty()) {
 		prevFrame = gray.clone();
@@ -26,5 +26,5 @@ bool FrameDifferenceMotionDetector::detectMotion(const cv::Mat& newFrame, cv::Ma
 
 	prevFrame = gray.clone();
 
-	return cv::countNonZero(motionMask) > 500;
+	return cv::countNonZero(motionMask) > MOTION_DETECTION_THRESHOLD;
 }
