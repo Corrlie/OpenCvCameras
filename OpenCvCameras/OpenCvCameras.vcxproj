@@ -133,6 +133,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CameraController.cpp" />
+    <ClCompile Include="CameraFactory.cpp" />
     <ClCompile Include="CameraFrameCapture.cpp" />
     <ClCompile Include="ConsoleDisplay.cpp" />
     <ClCompile Include="FileLogger.cpp" />
@@ -141,10 +142,12 @@
     <ClCompile Include="MotionContourDrawer.cpp" />
     <ClCompile Include="MotionDetector.cpp" />
     <ClCompile Include="OpenCvCameras.cpp" />
+    <ClCompile Include="WebcamCameraFactory.cpp" />
     <ClCompile Include="WebcamCameraFrameCapture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CameraController.h" />
+    <ClInclude Include="CameraFactory.h" />
     <ClInclude Include="CameraFrameCapture.h" />
     <ClInclude Include="ConsoleDisplay.h" />
     <ClInclude Include="FileLogger.h" />
@@ -153,6 +156,7 @@
     <ClInclude Include="macros.h" />
     <ClInclude Include="MotionContourDrawer.h" />
     <ClInclude Include="MotionDetector.h" />
+    <ClInclude Include="WebcamCameraFactory.h" />
     <ClInclude Include="WebcamCameraFrameCapture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
