@@ -6,11 +6,12 @@
 #include "FileLogger.h"
 #include "ConsoleDisplay.h"
 #include "WebcamCameraFactory.h"
+#include "ConsoleInputListener.h"
 
 int main() {
     cv::utils::logging::setLogLevel(cv::utils::logging::LOG_LEVEL_SILENT);
 
-    ConsoleDisplay display;
+    ConsoleDisplay display(std::make_shared<ConsoleInputListener>());
     std::shared_ptr<Logger> fileLogger = std::make_shared<FileLogger>("fileLogs.txt");
     std::shared_ptr<MotionDetector> detector = std::make_shared<FrameDifferenceMotionDetector>(fileLogger);
     WebcamCameraFactory webcamFactory;
